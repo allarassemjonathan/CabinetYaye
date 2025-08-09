@@ -195,6 +195,42 @@ header h1 {
   font-weight: 600;
   color: #007E33;
 }
+#tarifs h2 {
+  text-align: center;
+  color: var(--green);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.tarifs-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tarifs-table th, 
+.tarifs-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tarifs-table th {
+  background: var(--green);
+  color: white;
+  font-weight: 600;
+}
+
+.tarifs-table tr:hover {
+  background: #f9fff9;
+}
+
+.tarifs-table td em {
+  color: #888;
+}
 
 
 /* Footer */
