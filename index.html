@@ -9,6 +9,68 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
+<style>.service-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 15px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  background-color: #fff;
+}
+
+.service-card:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.service-header {
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.service-description {
+  font-size: 0.95em;
+  color: #555;
+}
+
+.service-extra {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.4s ease;
+}
+
+.service-card.active .service-extra {
+  max-height: 1000px;
+  opacity: 1;
+  margin-top: 10px;
+}
+
+.service-extra img {
+  width: 100%;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+.service-price {
+  font-weight: bold;
+  color: #333;
+}
+
+    .intro img, .service img { max-width: 150px; border-radius: 8px; margin: 8px 0; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 1rem; }
+    .service { border: 1px solid #ccc; padding: 1rem; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+    .service:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .service.expanded { background: #f9f9f9; }
+    .hidden { display: none; }
+.map-wrap iframe{
+      width:100%;
+      height:320px; /* original height retained */
+      border:0;
+      border-radius:8px;
+    }
+</style>
 <body>
 <header data-aos="fade-down" data-aos-duration="1000">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -20,64 +82,164 @@
 </header>
 
   <main>
+<section id="intro" class="container" data-aos="fade-up" data-aos-duration="1000" style="text-align: center;">
+  <h1>Bienvenue au Cabinet Paramédical Yaye Astou</h1><br>
+  <figure style="display: inline-block; margin: 0 auto;">
+    <img src="https://allarassemjonathan.github.io/front.jpeg" alt="Façade du cabinet" width="700" height="500"/>
+    <br>
+    <figcaption>La façade du Cabinet Paramédical Yaye Astou.</figcaption>
+    <br>
+    <p>
+    Situé au cœur de la Cité des Fonctionnaires de Diamnadio, notre cabinet vous accueille dans un cadre moderne et confortable. Nous disposons de salles équipées de climatisation pour assurer votre confort tout au long de votre visite.
+  </p>
+</section>
+<section id="localisation" class="container" data-aos="fade-up" data-aos-duration="1000" style="text-align: center;">
+
+    <h1>Au coeur de Diamniadio</h1>
+  <br>
+  <div class="map-wrap">
+          <!-- Embedded search for the lab in Diamniadio, no API key required -->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13038.429454831712!2d-17.175000777437642!3d14.721681609923577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec199699304eac9%3A0x959e8aa08b48fc15!2sCit%C3%A9%20des%20fonctionnaires%20%22Une%20famille%20un%20toit%22!5e0!3m2!1sen!2sus!4v1754971003279!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <p>Notre équipe dévouée et professionnelle est à votre écoute pour répondre à tous vos besoins médicaux avec bienveillance et expertise. Que ce soit pour des consultations générales, des soins spécialisés ou un suivi personnalisé, nous vous accompagnons à chaque étape de votre santé.<br><br></p>
+    
+  </div>
+  <br><br>
+  <p>
+    <img src="https://allarassemjonathan.github.io/reception_main.jpeg" alt="reception" width="700" height="500">
+    <figcaption>Salle de réception.</figcaption>
+    <br>
+    Notre engagement est d’assurer un service de qualité dans un environnement humain et chaleureux, où votre bien-être est notre priorité absolue.  
+  </p>
+</section>
+
+
+
+
+
   <section id="services" class="container" data-aos="fade-up" data-aos-duration="1000">
   <h2>Nos Services</h2>
   <div class="services-grid">
-    <article class="service" data-aos="zoom-in" data-aos-delay="100">
-      <i class="fas fa-user-md icon"></i>
-      <h3>Consultation Adulte</h3>
-      <p>Soins médicaux pour adultes avec diagnostic personnalisé et suivi.</p>
-    </article>
+    <article class="service" data-service="consult-adulte">
+        <i class="fas fa-user-md icon"></i>
+        <h3>Consultation Adulte</h3>
+        <p>Soins médicaux pour adultes avec diagnostic personnalisé et suivi.</p>
+        <div class="extra hidden">
+          <p>Nous prenons le temps d’écouter vos préoccupations, de poser un diagnostic précis et de vous accompagner tout au long de votre traitement.</p>
+          <!-- <img src="https://allarassemjonathan.github.io/Soins_infirmiers.jpeg" alt="Consultation Adulte"/> -->
+          <p><strong>Tarif :</strong> 3 000 FCFA</p>
+        </div>
+      </article>
+
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
       <i class="fas fa-baby icon"></i>
       <h3>Consultation Enfant</h3>
       <p>Prise en charge médicale adaptée aux enfants.</p>
+      <div class="extra hidden">
+          <!-- <img src="https://allarassemjonathan.github.io/Soins_infirmiers.jpeg" alt="Consultation Adulte"/> -->
+           <p>
+          Que ce soit pour des consultations de routine, des vaccins ou des soins spécialisés, notre équipe pédiatrique qualifiée veille à répondre aux besoins spécifiques de chaque enfant, en adaptant les traitements selon son âge et son état de santé.
+           </p>
+          <p><strong>Tarif :</strong> Consulter le cabinet pour plus d'info</p>
+        </div>
     </article>
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
       <i class="fas fa-female icon"></i>
       <h3>Consultation Sage-Femme (Prénatale & Postnatale)</h3>
       <p>Suivi de grossesse, accouchement et soins postnataux.</p>
+      <div class="extra hidden">
+          <p>
+          Nous proposons des conseils pratiques, un soutien émotionnel et des soins adaptés, incluant le dépistage des complications, la préparation à l’accouchement et l’accompagnement à l’allaitement. 
+          Notre objectif est d’offrir un environnement sécurisé et bienveillant pour que chaque étape se déroule sereinement.
+        </p>
+        <strong>Tarif :</strong> 3 000 FCFA</p>
+        </div>
     </article>
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
       <i class="fas fa-heart icon"></i>
       <h3>Planification Familiale</h3>
       <p>Conseils et solutions contraceptives pour couples et familles.</p>
+      <div class="extra hidden">
+      <p>
+        Notre service de planification familiale offre un accompagnement complet et personnalisé pour vous aider à choisir la méthode contraceptive la plus adaptée à votre mode de vie et à vos besoins. 
+      </p>
+      <img src="https://allarassemjonathan.github.io/planning_familiale.jpeg" alt="Consultation Adulte"/>
+        <p><strong>Tarif :</strong> 3 000 FCFA</p>
+        </div>
     </article>
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
       <i class="fas fa-syringe icon"></i>
       <h3>Soins Infirmiers</h3>
       <p>Soins infirmiers quotidiens : pansements, injections, etc.</p>
+      <div class="extra hidden">
+          <p>Nous prenons le temps d’écouter vos préoccupations, de poser un diagnostic précis et de vous accompagner tout au long de votre traitement.</p>
+          <img src="https://allarassemjonathan.github.io/Soins_infirmiers.jpeg" alt="Consultation Adulte"/>
+          <p><strong>Tarif :</strong>  Consulter le cabinet pour plus d'info</p>
+        </div>
     </article>
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
       <i class="fas fa-heartbeat icon"></i>
       <h3>Contrôle Tension Artérielle</h3>
       <p>Mesure et suivi de la tension pour prévenir l’hypertension.</p>
+      <div class="extra hidden">
+          <p>Nous prenons le temps d’écouter vos préoccupations, de poser un diagnostic précis et de vous accompagner tout au long de votre traitement.</p>
+          <img src="https://allarassemjonathan.github.io/control_tension_glycemie.jpeg" alt="Consultation Adulte"/>
+          <p><strong>Tarif :</strong>  Consulter le cabinet pour plus d'info</p>
+        </div>
     </article>
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
       <i class="fas fa-tint icon"></i>
       <h3>Contrôle Glycémie</h3>
       <p>Suivi du taux de sucre dans le sang, essentiel pour les diabétiques.</p>
+      <div class="extra hidden">
+          <p>
+            Suivi du taux de sucre dans le sang, essentiel pour les diabétiques. Nous réalisons des contrôles réguliers pour vous aider à maintenir votre glycémie dans des plages sécuritaires, prévenir les complications liées au diabète et ajuster votre traitement si nécessaire. 
+          </p>
+          <p><strong>Tarif :</strong>  Consulter le cabinet pour plus d'info</p>
+        </div>
     </article>
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
       <i class="fas fa-wave-square icon"></i>
       <h3>Échographie</h3>
       <p>Imagerie médicale pour des diagnostics fiables et non invasifs.</p>
+      <div class="extra hidden">
+          <p>
+             Imagerie médicale pour des diagnostics fiables et non invasifs. Notre service d’échographie utilise des équipements modernes pour visualiser avec précision les organes internes, le développement fœtal, ainsi que d’autres structures corporelles. 
+          </p>
+        <p><strong>Tarif :</strong> 10 000 FCFA</p>
+        </div>
     </article>
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
       <i class="fas fa-vials icon"></i>
       <h3>Analyses Laboratoires</h3>
       <p>Bilans et examens de laboratoire pour un meilleur suivi médical.</p>
+      <div class="extra hidden">
+          <p> Que ce soit pour des tests sanguins, urinaires ou autres examens spécialisés, notre équipe vous guide avec rigueur et confidentialité pour assurer un diagnostic précis et un suivi personnalisé.</p>
+          <p><strong>Tarif :</strong>  Consulter le cabinet pour plus d'info</p>
+        </div>
     </article>
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
       <i class="fas fa-user-shield icon"></i>
       <h3>Circoncision</h3>
       <p>Procédure pratiquée en toute sécurité par des professionnels.</p>
+      <div class="extra hidden">
+          <p>
+             Notre équipe veille à une prise en charge personnalisée, en expliquant clairement les étapes et en répondant à toutes vos questions pour vous rassurer. Le suivi post-opératoire est assuré afin de prévenir toute complication et favoriser une bonne cicatrisation.
+          </p>
+          <p><strong>Tarif :</strong> 20 000 FCFA</p>
+        </div>
     </article>
-    <article class="service" data-aos="zoom-in" data-aos-delay="100">
-      <i class="fas fa-heartbeat icon"></i>
-      <h3>ECG (Électrocardiogramme)</h3>
-      <p>Analyse du rythme cardiaque pour évaluer la santé du cœur.</p>
-    </article>
+    <article class="service" data-aos="zoom-in" data-aos-delay="100" id="ecg-service">
+  <i class="fas fa-heartbeat icon"></i>
+  <h3>ECG (Électrocardiogramme)</h3>
+  <p>Analyse du rythme cardiaque pour évaluer la santé du cœur.</p>
+  <div class="extra hidden">
+          <p>
+            Notre service d’ECG permet de détecter rapidement les anomalies du rythme, les troubles électriques et d’autres problèmes cardiaques potentiels. 
+          </p>
+          <p><strong>Tarif :</strong>10 000 FCFA</p>
+        </div>
+</article>
+
   </div>
 </section>
 
@@ -167,5 +329,12 @@
   <footer>
     <p>© 2025 Cabinet Paramédical Yaye Astou - Tous droits réservés</p>
   </footer>
-</body>
+</body><script>
+document.querySelectorAll('.service').forEach(service => {
+  service.addEventListener('click', () => {
+    service.classList.toggle('expanded');
+    service.querySelector('.extra').classList.toggle('hidden');
+  });
+});
+</script>
 </html>
