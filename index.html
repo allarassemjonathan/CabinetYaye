@@ -70,6 +70,32 @@
       border:0;
       border-radius:8px;
     }
+
+/* Make intro and reception images responsive & centered */
+#intro img,
+#localisation img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Center horizontally */
+}
+
+/* Optional: Add smaller captions on mobile */
+#intro figcaption,
+#localisation figcaption {
+  text-align: center;
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* Ensure they don't overflow on very small devices */
+@media (max-width: 600px) {
+  #intro img,
+  #localisation img {
+    max-width: 90%;
+  }
+}
+
 </style>
 <body>
 <header data-aos="fade-down" data-aos-duration="1000">
