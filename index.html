@@ -9,7 +9,71 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<style>.service-card {
+<style>
+
+.service {
+  background-color: #fff;
+  border-radius: 25px; /* Increased from 8px for the "pill" look */
+  overflow: hidden;    /* Vital: clips the top image to the rounded corners */
+  margin: 10px 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05); /* Softer, larger shadow */
+  border: none;        /* Remove the grey border */
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.service:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+}
+
+/* THE IMAGE AT THE TOP */
+.service-top-img { 
+  width: 100%; 
+  height: 220px;          /* Adjust height as needed */
+  object-fit: cover;      /* Crops image to fit without stretching */
+  max-width: 100% !important; /* Overrides your 150px old style */
+  margin: 0 !important;   /* Removes old margins */
+}
+
+/* TEXT AREA PADDING */
+.service-text-content {
+  padding: 20px;
+}
+
+/* Add a wrapper for the text inside the card */
+.service h3 {
+  color: #0056b3;      /* The blue from your image */
+  font-weight: 700;
+  margin: 20px 20px 10px 20px; /* Specific padding for top, sides, bottom */
+}
+
+/* THE EXPANDABLE SECTION LOGIC */
+.extra.hidden {
+  display: none;
+}
+
+/* If you use an 'active' class via JS to expand */
+.service.active .extra.hidden {
+  display: block;
+  margin-top: 15px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.service p {
+  padding: 0 20px 20px 20px; /* Padding for the description */
+  color: #555;
+}
+
+/* Ensure the 'extra' content also respects the padding */
+.extra {
+  padding: 0 20px 20px 20px;
+}
+
+.service-card {
   border: 1px solid #ddd;
   border-radius: 8px;
   margin: 10px 0;
@@ -88,6 +152,61 @@
   color: #555;
 }
 
+
+/* Hero image with text on image (no overlay) */
+.hero-image {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+/* Text placed directly on image */
+.hero-text {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  padding: 0 20px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.hero-text h1 {
+  font-size: 2.4rem;
+  font-weight: 400;
+  margin-bottom: 10px;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.7);
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+}
+
+
 /* Ensure they don't overflow on very small devices */
 @media (max-width: 600px) {
   #intro img,
@@ -108,17 +227,16 @@
 </header>
 
   <main>
-<section id="intro" class="container" data-aos="fade-up" data-aos-duration="1000" style="text-align: center;">
-  <h1>Bienvenue au Cabinet Paramédical Yaye Astou</h1><br>
-  <figure style="display: inline-block; margin: 0 auto;">
-    <img src="https://allarassemjonathan.github.io/front.jpeg" alt="Façade du cabinet" width="700" height="500"/>
-    <br>
-    <figcaption>La façade du Cabinet Paramédical Yaye Astou.</figcaption>
-    <br>
-    <p>
-    Situé au cœur de la Cité des Fonctionnaires de Diamnadio, notre cabinet vous accueille dans un cadre moderne et confortable. Nous disposons de salles équipées de climatisation pour assurer votre confort tout au long de votre visite.
-  </p>
+
+    <section id="intro" class="hero-image" data-aos="fade-up" data-aos-duration="1000">
+  <img src="https://allarassemjonathan.github.io/front.jpeg" alt="Façade du cabinet">
+
+  <div class="hero-text">
+    <h1>Dédié à votre bien-être<br>et celui de votre famille</h1>
+    <p>Des soins médicaux de qualité, accessibles 24h/24 à Diamniadio.</p>
+  </div>
 </section>
+
 <section id="localisation" class="container" data-aos="fade-up" data-aos-duration="1000" style="text-align: center;">
 
     <h1>Au coeur de Diamniadio</h1>
@@ -139,196 +257,143 @@
 </section>
 
 
-
-
-
-  <section id="services" class="container" data-aos="fade-up" data-aos-duration="1000">
-  <h2>Nos Services</h2>
+<section id="services" class="container" data-aos="fade-up" data-aos-duration="1000">
+  <h2 class="section-title">Nos Services</h2>
   <div class="services-grid">
+
     <article class="service" data-service="consult-adulte">
-        <i class="fas fa-user-md icon"></i>
+      <img src="https://allarassemjonathan.github.io/consultation_adult.jfif" alt="Consultation Adulte" class="service-top-img">
+      <div class="service-text-content">
         <h3>Consultation Adulte</h3>
-        <p>Soins médicaux pour adultes avec diagnostic personnalisé et suivi.</p>
+        <p class="service-description">Soins médicaux pour adultes avec diagnostic personnalisé et suivi.</p>
         <div class="extra hidden">
           <p>Nous prenons le temps d’écouter vos préoccupations, de poser un diagnostic précis et de vous accompagner tout au long de votre traitement.</p>
-          <!-- <img src="https://allarassemjonathan.github.io/Soins_infirmiers.jpeg" alt="Consultation Adulte"/> -->
-          <p><strong>Tarif :</strong> 3 000 FCFA</p>
+          <p class="service-price"><strong>Tarif :</strong> 3 000 FCFA</p>
         </div>
-      </article>
+      </div>
+    </article>
 
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
-      <i class="fas fa-baby icon"></i>
-      <h3>Consultation Enfant</h3>
-      <p>Prise en charge médicale adaptée aux enfants.</p>
-      <div class="extra hidden">
-          <!-- <img src="https://allarassemjonathan.github.io/Soins_infirmiers.jpeg" alt="Consultation Adulte"/> -->
-           <p>
-          Que ce soit pour des consultations de routine, des vaccins ou des soins spécialisés, notre équipe pédiatrique qualifiée veille à répondre aux besoins spécifiques de chaque enfant, en adaptant les traitements selon son âge et son état de santé.
-           </p>
-          <p><strong>Tarif :</strong> Consulter le cabinet pour plus d'info</p>
+      <img src="https://allarassemjonathan.github.io/consultation_enfant.jfif" alt="Consultation Enfant" class="service-top-img">
+      <div class="service-text-content">
+        <h3>Consultation Enfant</h3>
+        <p class="service-description">Prise en charge médicale adaptée aux enfants.</p>
+        <div class="extra hidden">
+          <p>Que ce soit pour des consultations de routine, des vaccins ou des soins spécialisés, notre équipe pédiatrique veille à répondre aux besoins spécifiques de chaque enfant.</p>
+          <p class="service-price"><strong>Tarif :</strong> Consulter le cabinet</p>
         </div>
+      </div>
     </article>
+
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
-      <i class="fas fa-female icon"></i>
-      <h3>Consultation Sage-Femme (Prénatale & Postnatale)</h3>
-      <p>Suivi de grossesse, accouchement et soins postnataux.</p>
-      <div class="extra hidden">
-          <p>
-          Nous proposons des conseils pratiques, un soutien émotionnel et des soins adaptés, incluant le dépistage des complications, la préparation à l’accouchement et l’accompagnement à l’allaitement. 
-          Notre objectif est d’offrir un environnement sécurisé et bienveillant pour que chaque étape se déroule sereinement.
-        </p>
-        <strong>Tarif :</strong> 3 000 FCFA</p>
+      <img src="https://allarassemjonathan.github.io/consultation_prenatale.jfif" alt="Gynécologie" class="service-top-img">
+      <div class="service-text-content">
+        <h3>Gynécologie</h3>
+        <p class="service-description">Suivi de santé féminine, maternité et conseils spécialisés.</p>
+        <div class="extra hidden">
+          <p>Nous proposons un suivi rigoureux pour la santé de la femme à toutes les étapes de sa vie.</p>
+          <p class="service-price"><strong>Tarif :</strong> 3 000 FCFA</p>
         </div>
+      </div>
     </article>
+
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
-      <i class="fas fa-heart icon"></i>
-      <h3>Planification Familiale</h3>
-      <p>Conseils et solutions contraceptives pour couples et familles.</p>
-      <div class="extra hidden">
-      <p>
-        Notre service de planification familiale offre un accompagnement complet et personnalisé pour vous aider à choisir la méthode contraceptive la plus adaptée à votre mode de vie et à vos besoins. 
-      </p>
-      <img src="https://allarassemjonathan.github.io/planning_familiale.jpeg" alt="Consultation Adulte"/>
-        <p><strong>Tarif :</strong> 3 000 FCFA</p>
+      <img src="https://allarassemjonathan.github.io/sage_femme.jfif" alt="Accouchement" class="service-top-img">
+      <div class="service-text-content">
+        <h3>Accouchement</h3>
+        <p class="service-description">Suivi de grossesse et soins postnataux sécurisés.</p>
+        <div class="extra hidden">
+          <p>Un environnement sécurisé et bienveillant pour que chaque étape de l'accouchement se déroule sereinement.</p>
+          <p class="service-price"><strong>Tarif :</strong> Consulter le cabinet</p>
         </div>
+      </div>
     </article>
+
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
-      <i class="fas fa-syringe icon"></i>
-      <h3>Soins Infirmiers</h3>
-      <p>Soins infirmiers quotidiens : pansements, injections, etc.</p>
-      <div class="extra hidden">
-          <p>Nous prenons le temps d’écouter vos préoccupations, de poser un diagnostic précis et de vous accompagner tout au long de votre traitement.</p>
-          <img src="https://allarassemjonathan.github.io/Soins_infirmiers.jpeg" alt="Consultation Adulte"/>
-          <p><strong>Tarif :</strong>  Consulter le cabinet pour plus d'info</p>
+      <img src="https://allarassemjonathan.github.io/planingfam.jfif" alt="Planification Familiale" class="service-top-img">
+      <div class="service-text-content">
+        <h3>Planification Familiale</h3>
+        <p class="service-description">Conseils et solutions contraceptives pour couples et familles.</p>
+        <div class="extra hidden">
+          <p>Accompagnement personnalisé pour choisir la méthode contraceptive la plus adaptée à votre mode de vie.</p>
+          <p class="service-price"><strong>Tarif :</strong> 3 000 FCFA</p>
         </div>
+      </div>
     </article>
+
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
-      <i class="fas fa-heartbeat icon"></i>
-      <h3>Contrôle Tension Artérielle</h3>
-      <p>Mesure et suivi de la tension pour prévenir l’hypertension.</p>
-      <div class="extra hidden">
-          <p>Nous prenons le temps d’écouter vos préoccupations, de poser un diagnostic précis et de vous accompagner tout au long de votre traitement.</p>
-          <img src="https://allarassemjonathan.github.io/control_tension_glycemie.jpeg" alt="Consultation Adulte"/>
-          <p><strong>Tarif :</strong>  Consulter le cabinet pour plus d'info</p>
+      <img src="https://allarassemjonathan.github.io/soins_inf.jfif" alt="Soins Infirmiers" class="service-top-img">
+      <div class="service-text-content">
+        <h3>Soins Infirmiers</h3>
+        <p class="service-description">Soins quotidiens : pansements, injections et suivis.</p>
+        <div class="extra hidden">
+          <p>Prise en charge professionnelle pour tous vos soins infirmiers à domicile ou en cabinet.</p>
+          <p class="service-price"><strong>Tarif :</strong> Consulter le cabinet</p>
         </div>
+      </div>
     </article>
+
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
-      <i class="fas fa-tint icon"></i>
-      <h3>Contrôle Glycémie</h3>
-      <p>Suivi du taux de sucre dans le sang, essentiel pour les diabétiques.</p>
-      <div class="extra hidden">
-          <p>
-            Suivi du taux de sucre dans le sang, essentiel pour les diabétiques. Nous réalisons des contrôles réguliers pour vous aider à maintenir votre glycémie dans des plages sécuritaires, prévenir les complications liées au diabète et ajuster votre traitement si nécessaire. 
-          </p>
-          <p><strong>Tarif :</strong>  Consulter le cabinet pour plus d'info</p>
+      <img src="https://allarassemjonathan.github.io/consultation_glyc.jfif" alt="Contrôle Glycémie" class="service-top-img">
+      <div class="service-text-content">
+        <h3>Contrôle Glycémie</h3>
+        <p class="service-description">Suivi du taux de sucre pour prévenir les complications.</p>
+        <div class="extra hidden">
+          <p>Essentiel pour les diabétiques, nous aidons à maintenir votre glycémie dans des plages sécuritaires.</p>
+          <p class="service-price"><strong>Tarif :</strong> Consulter le cabinet</p>
         </div>
+      </div>
     </article>
+
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
-      <i class="fas fa-wave-square icon"></i>
-      <h3>Échographie</h3>
-      <p>Imagerie médicale pour des diagnostics fiables et non invasifs.</p>
-      <div class="extra hidden">
-          <p>
-             Imagerie médicale pour des diagnostics fiables et non invasifs. Notre service d’échographie utilise des équipements modernes pour visualiser avec précision les organes internes, le développement fœtal, ainsi que d’autres structures corporelles. 
-          </p>
-        <p><strong>Tarif :</strong> 10 000 FCFA</p>
+      <img src="https://allarassemjonathan.github.io/echographie.jfif" alt="Échographie" class="service-top-img">
+      <div class="service-text-content">
+        <h3>Échographie</h3>
+        <p class="service-description">Imagerie médicale pour des diagnostics fiables.</p>
+        <div class="extra hidden">
+          <p>Équipements modernes pour visualiser avec précision les organes internes et le développement fœtal.</p>
+          <p class="service-price"><strong>Tarif :</strong> 10 000 FCFA</p>
         </div>
+      </div>
     </article>
+
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
-      <i class="fas fa-vials icon"></i>
-      <h3>Analyses Laboratoires</h3>
-      <p>Bilans et examens de laboratoire pour un meilleur suivi médical.</p>
-      <div class="extra hidden">
-          <p> Que ce soit pour des tests sanguins, urinaires ou autres examens spécialisés, notre équipe vous guide avec rigueur et confidentialité pour assurer un diagnostic précis et un suivi personnalisé.</p>
-          <p><strong>Tarif :</strong>  Consulter le cabinet pour plus d'info</p>
+      <img src="https://allarassemjonathan.github.io/ana-labo.jfif" alt="Analyses Laboratoires" class="service-top-img">
+      <div class="service-text-content">
+        <h3>Analyses Laboratoires</h3>
+        <p class="service-description">Bilans et examens pour un meilleur suivi médical.</p>
+        <div class="extra hidden">
+          <p>Tests sanguins et urinaires réalisés avec rigueur et confidentialité.</p>
+          <p class="service-price"><strong>Tarif :</strong> Consulter le cabinet</p>
         </div>
+      </div>
     </article>
+
     <article class="service" data-aos="zoom-in" data-aos-delay="100">
-      <i class="fas fa-user-shield icon"></i>
-      <h3>Circoncision</h3>
-      <p>Procédure pratiquée en toute sécurité par des professionnels.</p>
-      <div class="extra hidden">
-          <p>
-             Notre équipe veille à une prise en charge personnalisée, en expliquant clairement les étapes et en répondant à toutes vos questions pour vous rassurer. Le suivi post-opératoire est assuré afin de prévenir toute complication et favoriser une bonne cicatrisation.
-          </p>
-          <p><strong>Tarif :</strong> 20 000 FCFA</p>
+      <img src="https://allarassemjonathan.github.io/circomcision.jfif" alt="Circoncision" class="service-top-img">
+      <div class="service-text-content">
+        <h3>Circoncision</h3>
+        <p class="service-description">Procédure sécurisée pratiquée par des professionnels.</p>
+        <div class="extra hidden">
+          <p>Prise en charge personnalisée avec suivi post-opératoire assuré.</p>
+          <p class="service-price"><strong>Tarif :</strong> 20 000 FCFA</p>
         </div>
+      </div>
     </article>
+
     <article class="service" data-aos="zoom-in" data-aos-delay="100" id="ecg-service">
-  <i class="fas fa-heartbeat icon"></i>
-  <h3>ECG (Électrocardiogramme)</h3>
-  <p>Analyse du rythme cardiaque pour évaluer la santé du cœur.</p>
-  <div class="extra hidden">
-          <p>
-            Notre service d’ECG permet de détecter rapidement les anomalies du rythme, les troubles électriques et d’autres problèmes cardiaques potentiels. 
-          </p>
-          <p><strong>Tarif :</strong>10 000 FCFA</p>
+      <img src="https://allarassemjonathan.github.io/ecg.jfif" alt="ECG" class="service-top-img">
+      <div class="service-text-content">
+        <h3>ECG (Électrocardiogramme)</h3>
+        <p class="service-description">Analyse du rythme cardiaque pour évaluer la santé du cœur.</p>
+        <div class="extra hidden">
+          <p>Détection rapide des anomalies du rythme et des troubles électriques cardiaques.</p>
+          <p class="service-price"><strong>Tarif :</strong> 10 000 FCFA</p>
         </div>
-</article>
+      </div>
+    </article>
 
   </div>
-</section>
-
-<section id="tarifs" class="container" data-aos="fade-up" data-aos-duration="1000">
-  <h2>Nos Tarifs</h2>
-  <table class="tarifs-table">
-    <thead>
-      <tr>
-        <th>Service</th>
-        <th>Tarif</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Consultation Générale</td>
-        <td>3 000 FCFA</td>
-      </tr>
-      <tr>
-        <td>Consultation Enfant</td>
-        <td><em>Contacter le cabinet pour plus d'informations</em></td>
-      </tr>
-      <tr>
-        <td>Consultation Prénatale</td>
-        <td>3 000 FCFA</td>
-      </tr>
-      <tr>
-        <td>Consultation Postnatale</td>
-        <td>3 000 FCFA</td>
-      </tr>
-      <tr>
-        <td>Planification Familiale</td>
-        <td>3 000 FCFA</td>
-      </tr>
-      <tr>
-        <td>Soins Infirmiers</td>
-        <td><em>Contacter le cabinet pour plus d'informations</em></td>
-      </tr>
-      <tr>
-        <td>Contrôle Tension Artérielle</td>
-        <td><em>Contacter le cabinet pour plus d'informations</em></td>
-      </tr>
-      <tr>
-        <td>Contrôle Glycémie</td>
-        <td><em>Contacter le cabinet pour plus d'informations</em></td>
-      </tr>
-      <tr>
-        <td>Échographie</td>
-        <td>10 000 FCFA</td>
-      </tr>
-      <tr>
-        <td>Analyses Laboratoires</td>
-        <td><em>Contacter le cabinet pour plus d'informations</em></td>
-      </tr>
-      <tr>
-        <td>Circoncision</td>
-        <td>20 000 FCFA</td>
-      </tr>
-      <tr>
-        <td>ECG (Électrocardiogramme)</td>
-        <td>10 000 FCFA</td>
-      </tr>
-    </tbody>
-  </table>
 </section>
 
     <section id="contact" class="container" data-aos="fade-up" data-aos-duration="1000">
